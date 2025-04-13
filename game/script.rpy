@@ -1,7 +1,7 @@
 ﻿# game_script.rpy
 
 # Basic Ren'Py configuration
-define config.developer = True
+# define config.developer = True
 
 define balance = 1000
 

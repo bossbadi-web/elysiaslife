@@ -1,6 +1,7 @@
 /*.*
 
 game/saves/
+game/cache/
 
 !.vscode/
 !.gitignore

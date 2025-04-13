@@ -372,7 +372,7 @@ label coop_solo:
     jump continuing_challenges
 
 label continuing_challenges:
-    "Pure Vegas still organizes protests outside legalized workplaces. Meanwhile, if Leena avoided a game over, she recovers from jail and adapts to the new system."
+    "Pure Vegas still organizes protests outside legalized workplaces."
     "The new casino manager, Raven Cross, proposes a VIP lounge for high-rollers seeking 'entertainment' and asks for your input. You also hear about a missing coworker, Ava."
 
     menu:

@@ -554,7 +554,7 @@ label gameover_arrest:
 
 label gameover_assault:
     scene assault with dissolve
-    play music "gunshot.mp3" noloop
+    play music "moan.mp3" noloop
 
     $ balance = 0  # Reset balance to zero on game over
 

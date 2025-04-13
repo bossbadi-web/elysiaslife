@@ -41,7 +41,7 @@ Sprites: {a=https://potat0master.itch.io/free-character-sprites-for-visual-novel
 
 Music: {a=https://tabletopaudio.com/}Tabletop Audio{/a}
 
-Sound effects: {a=https://pixabay.com/}Pixabay{/a}
+Sound effects: {a=https://pixabay.com/sound-effects}Pixabay{/a}
 """)
 
 

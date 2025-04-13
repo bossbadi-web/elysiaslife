@@ -5,34 +5,42 @@
 
 define balance = 1000
 
+define e = Character("Elysia", color="#c8ffc8")
+define p = Character("Police", color="#c8c8ff")
+define dk = Character("Desert King", color="#ffc8c8")
+define s = Character("Sorren", color="#c8c8ff")
+define r = Character("Raven", color="#ffc8c8")
+define pkr = Character("Opponent", color="#ffc8c8")
+define bar = Character("Bartender", color="#c8c8ff")
+
 # Elysia
-image elysia = 'images/sprites/sf1_outfit1_normal.png'
-image elysia_talk = 'images/sprites/sf1_outfit1_normaltalk.png'
-image elysia_huh = 'images/sprites/sf1_outfit1_huh.png'
-image elysia_cry = 'images/sprites/sf1_outfit1_cry.png'
-image elysia_angry = 'images/sprites/sf1_outfit1_angry.png'
-image elysia_angrytalk = 'images/sprites/sf1_outfit1_angrytalk.png'
-image elysia_umm = 'images/sprites/sf1_outfit1_umm.png'
+image elysia = "images/sprites/sf1_outfit1_normal.png"
+image elysia_talk = "images/sprites/sf1_outfit1_normaltalk.png"
+image elysia_huh = "images/sprites/sf1_outfit1_huh.png"
+image elysia_cry = "images/sprites/sf1_outfit1_cry.png"
+image elysia_angry = "images/sprites/sf1_outfit1_angry.png"
+image elysia_angrytalk = "images/sprites/sf1_outfit1_angrytalk.png"
+image elysia_umm = "images/sprites/sf1_outfit1_umm.png"
 
 # Police
-image police = 'images/sprites/sm1_sensei_normal.png'
-image police_smile = 'images/sprites/sm1_sensei_smile.png'
-image police_pout = 'images/sprites/sm1_sensei_pout.png'
-image police_talk = 'images/sprites/sm1_sensei_talk.png'
+image police = "images/sprites/sm1_sensei_normal.png"
+image police_smile = "images/sprites/sm1_sensei_smile.png"
+image police_pout = "images/sprites/sm1_sensei_pout.png"
+image police_talk = "images/sprites/sm1_sensei_talk.png"
 
 # Desert Kings
-image dk = 'images/sprites/ssn_sports_normal.png'
-image dk_angry = 'images/sprites/ssn_sports_angry.png'
-image dk_angrytalk = 'images/sprites/ssn_sports_angrytalk.png'
+image dk = "images/sprites/ssn_sports_normal.png"
+image dk_angry = "images/sprites/ssn_sports_angry.png"
+image dk_angrytalk = "images/sprites/ssn_sports_angrytalk.png"
 
 # councilwoman
-image sorren = 'images/sprites/sf2g_sensei_normal.png'
-image sorren_talk = 'images/sprites/sf2g_sensei_normaltalk.png'
+image sorren = "images/sprites/sf2g_sensei_normal.png"
+image sorren_talk = "images/sprites/sf2g_sensei_normaltalk.png"
 
 # raven cross
-image raven = 'images/sprites/haruo_butler_normal.png'
-image raven_talk = 'images/sprites/haruo_butler_normaltalk.png'
-image raven_smirk = 'images/sprites/haruo_butler_smirk.png'
+image raven = "images/sprites/haruo_butler_normal.png"
+image raven_talk = "images/sprites/haruo_butler_normaltalk.png"
+image raven_smirk = "images/sprites/haruo_butler_smirk.png"
 
 init python:
     # Function to update the player's balance
@@ -47,27 +55,24 @@ label start:
     scene lights with fade
     show screen stats_screen
 
-    # Introduction
     "Las Vegas – bright neon, glittering casinos, and endless entertainment. Yet here, prostitution is officially illegal."
     show elysia at center with dissolve
     "Your name is Elysia, a sex worker navigating a secret world hidden beneath the city lights."
 
-    # Initial payment for the first job
-    $ payment = renpy.random.randint(500, 1000)
-    $ update_balance(payment)
-
     hide elysia
     show elysia_talk at center
+    e "{i}It was business doing pleasure with you! Have a good night!{/i}"
+
+    $ payment = renpy.random.randint(500, 1000)
+    $ update_balance(payment)
     "You just finished a job with a discreet client, earning $[payment]. Not bad!"
 
     hide elysia_talk
     show elysia_huh at center
     "But the night is still young, and the city is full of opportunities... or dangers."
 
-    # First decision: go home or visit the casino
     menu:
         "What do you do?"
-
         "Go straight home":
             jump go_home
         "Visit the Majestic Spire Casino":
@@ -101,87 +106,99 @@ label casino_floor:
     $ update_balance(-buy_in)  # Deduct buy-in from balance
     
     "You buy in for $[buy_in], and the dealer slides you a stack of chips."
-    "The next hand begins, and you peel back an ace of spades and an ace of clubs—pocket aces!"
-    "Naturally, you play aggressively, raising the stakes."
-    "The flop is a rainbow: 3 of hearts, 5 of diamonds, and 9 of clubs. Looks safe. You bet again."
-    "The opponent calls, and the pot grows."
-    "The dealer flips the turn card, and it's a heart. Still no danger. You bet again."
-    "The opponent calls."
-    "The river card is a 10 of hearts. You have a strong hand, but you're concerned that your opponent might have a flush which beats your aces."
-    "You check, hoping your opponent will follow suit."
+    "The next hand begins, and you peel back an ace of spades and an ace of clubs."
+    e "{i}Ooh, pocket aces. I raise.{/i}"
+    pkr "{i}I call.{/i}"
+    "The flop is a rainbow: 3 of hearts, 5 of diamonds, and 9 of clubs."
+    e "{i}Looks safe. I bet.{/i}"
+    pkr "{i}Eh, I call.{/i}"
+    "The dealer flips the turn card, and it's a heart."
+    e "{i}Still no danger. Lets put more chips in.{/i}"
+    pkr "{i}Sure, why not?{/i}"
+    "The dealer reveals the river card, a 10 of hearts."
     hide elysia
     show elysia_huh at center
-    "Unfortunately, he goes all-in."
+    e "{i}Hmm. My aces are strong, but I'm worried about a flush. I'll check.{/i}"
+    pkr "{i}ALL IN.{/i}"
     hide elysia_huh
     show elysia_umm at center
+    e "{i}Shoot. I was hoping he didn't do that. Now I have to decide if he has the nuts or is bluffing.{/i}"
     
     menu:
-        "You have a tough decision to make. Do you think he has the nuts, or is he just bluffing?"
+        "What's your move?"
 
         "Call—he's bluffing!":
-            "You call and flip over your aces."
+            e "{i}You're bluffing! I call.{/i}"
             hide elysia_umm
-            # 50% chance of winning or losing
             $ win_chance = renpy.random.randint(1, 2)
             if win_chance == 1:
                 show elysia_talk at center
-                "The opponent flips a 2 and a 7. You win the hand!"
+                pkr "{i}Good hand. I fold.{/i}"
+                e "{i}Let's go!{/i}"
                 $ winnings = buy_in * 2  # Double the buy-in
                 $ update_balance(winnings)  # Update balance with winnings
                 "You gain $[winnings]."
             else:
                 show elysia_cry at center
-                "The opponent shows a flush and your heart sinks."
+                pkr "{i}Nice try, but I have a flush.{/i}"
+                e "{i}Ugh, I should have folded.{/i}"
                 "You lose your buy-in of $[buy_in]."
         
         "Fold—he's got the nuts!":
             $ lost = int(buy_in * 0.5)  # Assume you lose half your buy-in for folding
             $ remaining = buy_in - lost  # Remaining balance after folding
             $ update_balance(remaining)  # Update balance with loss
-            "You fold, deciding to play it safe. You leave the table with your remaining chips—$[remaining]."
+            e "{i}I'm not risking it. I fold.{/i}"
+            "You leave the table with your remaining chips—$[remaining]."
 
     hide elysia_umm
     show elysia_huh at center
 
-    # 50% chance of immediate bust, as an example
-    $ chance_encounter = renpy.random.randint(1, 2)
-    if chance_encounter == 1:
-        show police at left with dissolve
-        "Suddenly, you spot a vice cop in plain clothes. You need to act fast!"
-        menu:
-            "What do you do?"
-            "Try to blend in":
-                hide elysia_huh
-                show elysia at center
-                "You attempt to act natural, but the cop's gaze lingers on you."
-                hide police
-                show police_pout at left
-                "You manage to slip away unnoticed. That was close!"
-            "Confront the cop":
-                hide elysia_huh
-                hide police
+    show police at left with dissolve
+    "Suddenly, you spot a vice cop in plain clothes. You need to act fast!"
+    menu:
+        "What do you do?"
+        "Try to blend in":
+            hide elysia_huh
+            show elysia at center
+            "You attempt to act natural, but the cop's gaze lingers on you."
+            hide police
+            show police_pout at left
+            "You manage to slip away unnoticed. That was close!"
+        
+        "Confront the cop":
+            hide elysia_huh
+            hide police
+            show police_talk at left
+            "You decide to confront the cop, thinking you can talk your way out."
+            $ confront_chance = renpy.random.randint(1, 2)
+            if confront_chance == 1:
                 show elysia_angrytalk at center
-                show police_talk at left
-                "You decide to confront the cop, thinking you can talk your way out."
-                # 50% chance of being caught
-                $ confront_chance = renpy.random.randint(1, 2)
-                if confront_chance == 1:
-                    jump gameover_arrest
-                else:
-                    hide elysia_angrytalk
-                    show elysia_talk at center
-                    "Your boldness pays off. The cop backs off, and you escape."
-    else:
-        hide elysia_huh
-        show elysia at center
-        "You manage to keep your head low and avoid trouble, for now."
+                e "{i}What are you looking at?{/i}"
+                p "{i}Just doing my job. What's your business here?{/i}"
+                e "{i}Uh, just enjoying the casino. No harm done.{/i}"
+                hide police_talk
+                show police_pout at left
+                p "{i}They why are you dressed like that? Let's see your ID.{/i}"
+                p "{i}Elysia, right? I know you. You're on the list. You're coming with me.{/i}"
+                jump gameover_arrest
+            else:
+                show elysia_talk at center
+                e "{i}What's the problem, officer?{/i}"
+                p "{i}Just checking in. You know how it is.{/i}"
+                e "{i}Yeah, I know. Just trying to have a good time.{/i}"
+                p "{i}Sure, but keep it low-key.{/i}"
+                "Your boldness pays off. The cop backs off, and you escape."
+
     jump act1
 
 label casino_drink:
     scene casino_bar with dissolve
     show elysia_talk at center with dissolve
 
-    "You choose to quietly sit at the casino bar. You order the house special and sip your drink."
+    "You choose to quietly sit at the casino bar."
+    e "{i}I'll take the house special.{/i}"
+    bar "{i}Coming right up!{/i}"
 
     $ drink_cost = renpy.random.randint(50, 200)
     $ update_balance(-drink_cost)  # Cost of the drink
@@ -230,10 +247,15 @@ label act1_safe:
 label desert_kings:
     scene alley_dark with fade
     show dk_angrytalk at center with dissolve
-    "A gang called the Desert Kings demands payment from workers who operate in their territory. You face a choice."
+
+    "Oh no! The Desert Kings are here!"
+    dk "{i}Hey, darling. Having a good night?{/i}"
+    e "{i}Uh, yeah. Just... working.{/i}"
+    dk "{i}Well, you know the drill. We keep you safe from the cops, and you give us a cut. How's that sound?{/i}"
+
     menu:
         "Do you pay the Desert Kings?"
-        "Pay the fee (lose money)":
+        "Pay the fee":
             jump desert_pay
         "Refuse":
             jump desert_refuse
@@ -244,9 +266,12 @@ label desert_pay:
 
     hide dk_angrytalk
     show dk at center
-    "You hand over $[payment] to buy 'protection.' You avoid immediate conflict, but it stings financially."
+    "You reach into your pocket and hand over $[payment]."
+    e "{i}Fine, just take it.{/i}"
+    dk "{i}Good girl. I know you'll come around. Just keep your head down, and we won't have any problems.{/i}"
+    "The Desert Kings leave you alone for now, but you know they'll be back."
 
-    hide dk
+    hide dk with dissolve
 
     show elysia_talk at center with dissolve
     "Shortly after, you befriend Leena, a veteran sex worker who helps you dodge vice cops."
@@ -256,12 +281,13 @@ label desert_pay:
     jump act1_backlash
 
 label desert_refuse:
-    "You refuse to pay, holding on to your hard-earned cash."
+    e "{i}No way. I'm not paying you anything.{/i}"
     hide dk_angrytalk
     show dk_angry at center
-    "Unfortunately, the Desert Kings don’t like defiance. They might retaliate with violence."
-    $ gang_attack = renpy.random.randint(1, 2)
+    dk "{i}Oh, really? You think you can just walk away?{/i}"
+    $ gang_attack = 1
     if gang_attack == 1:
+        "You make a run for it, but the Desert Kings are quick."
         jump gameover_assault
     else:
         "Somehow, you slip under the gang's radar—for now. You meet Leena, who shows you ways to avoid cops."
@@ -278,6 +304,7 @@ label act2:
     scene city_council with fade
     show sorren_talk at center with dissolve
     "Public concern grows as arrests multiply. People see the ban fueling exploitation. Councilwoman Sorren proposes legalizing prostitution with strict regulations."
+    s "{i}We need to protect workers and ensure safety. Legalization is the way forward.{/i}"
     menu:
         "You hear about a secret activist meeting for sex workers."
         "Attend the meeting":
@@ -286,37 +313,38 @@ label act2:
             jump activism_avoid
 
 label activism_meeting:
-    hide sorren_talk
+    hide sorren_talk with dissolve
     show elysia_talk at center with dissolve
-    "You meet other workers and social advocates. They support Sorren’s bill, sharing hopes for safety and fair treatment."
+    "You meet other workers and social advocates. They support Sorren's bill, sharing hopes for safety and fair treatment."
     jump legal_debates
 
 label activism_avoid:
-    hide sorren_talk
+    hide sorren_talk with dissolve
     show elysia_huh at center with dissolve
     "You skip the meeting, wary of attention. You stay alone with your worries."
     jump legal_debates
 
 label legal_debates:
+    "Sorren's proposal sparks fierce opposition from Pure Vegas."
     show dk_angry at right with dissolve
-    "Sorren’s proposal sparks fierce opposition from Pure Vegas. Meanwhile, the Desert Kings try to sabotage the bill to keep their black-market control."
+    "Meanwhile, the Desert Kings try to sabotage the bill to keep their black-market control."
     menu:
         "A City Council hearing invites public testimony."
         "Testify":
-            hide dk_angry
+            hide dk_angry with dissolve
             hide elysia_huh
             jump testify_scene
         "Remain silent":
-            hide dk_angry
+            hide dk_angry with dissolve
             hide elysia_huh
             jump silent_scene
 
 label testify_scene:
     show elysia_umm at center
     "Nervously, you speak of the dangers you face daily. You might sway some council members."
-    # Risk of Desert Kings targeting you for 'exposure'
     $ sabotage_chance = renpy.random.randint(1, 3)
     if sabotage_chance == 1:
+        "Unfortunately, the Desert Kings hear about your testimony. They are not happy."
         jump gameover_assault
     else:
         hide elysia_umm
@@ -342,7 +370,7 @@ label act3:
     play music "32_City_and_the_City.mp3"
     scene city_legal with fade
     show elysia at center with dissolve
-    "With the new law in effect, you officially register as a sex worker. A Workers’ Cooperative forms to provide safer sites, medical access, and legal support."
+    "With the new law in effect, you officially register as a sex worker. A Workers' Cooperative forms to provide safer sites, medical access, and legal support."
     "Still, issues linger—social stigma, new fees, and possible under-the-table threats from the Desert Kings."
     menu:
         "Do you join the co-op or remain solo?"
@@ -373,7 +401,8 @@ label coop_solo:
 
 label continuing_challenges:
     "Pure Vegas still organizes protests outside legalized workplaces."
-    "The new casino manager, Raven Cross, proposes a VIP lounge for high-rollers seeking 'entertainment' and asks for your input. You also hear about a missing coworker, Ava."
+    "The new casino manager, Raven Cross, proposes a VIP lounge for high-rollers seeking \"entertainment\" and asks for your input."
+    "You also hear about a missing coworker, Ava."
 
     menu:
         "What do you want to do?"
@@ -386,41 +415,58 @@ label vip_lounge:
     play music "273_Arcane_Clockworks.mp3"
     scene casino_vip with dissolve
     show raven_talk at center with dissolve
-    "Raven Cross, the manager at Majestic Spire, proposes an exclusive VIP lounge for high-rollers looking for legalized sexual services."
+
+    r "{i}Thanks for coming, Elysia.{/i}"
+    e "{i}No problem. What's up?{/i}"
+    r "{i}Ever since the legalization, we've seen a surge in demand for high-end services.{/i}"
+    r "{i}I want to create a VIP lounge for high-rollers. It'll be exclusive, luxurious, and... well, you know what I mean.{/i}"
+    e "{i}Sounds intriguing. What's in it for me?{/i}"
+    r "{i}A cut of the profits, of course. Plus, you'll be part of something big. What say you?{/i}"
+
+    "You can either negotiate for better working conditions or rush the deal for quick profit."
+
     menu:
         "Negotiate or rush?"
         "Negotiate worker protections":
             hide raven_talk
             show raven at center
-            "You advocate fair wages and safety. Raven agrees, and your co-op respects your diplomacy."
+            e "{i}I think we should ensure fair wages and safety for everyone involved.{/i}"
+            r "{i}Okay. I'm sure we can work something out.{/i}"
             hide raven with dissolve
             show elysia at center with dissolve
             "You gain allies and a solid reputation, but the Desert Kings may retaliate."
             $ negotiate_chance = renpy.random.randint(1, 3)
-            if negotiate_chance == 1:
+            if negotiate_chance == 2:
                 jump gameover_assault
+            else:
+                hide elysia
+                show elysia_talk at center
+                "You successfully negotiate better working conditions and a fair cut of the profits."
+                $ payment = renpy.random.randint(500, 1000)
+                $ update_balance(payment)  # Update balance with payment
+                "You earn $[payment] for your efforts."
+                "You are now a respected figure in the co-op, and your actions inspire others."
+        
         "Rush the deal":
             hide raven_talk
             show raven_smirk at center
-            "You ignore crucial details for quick profit. Workers feel exploited; internal conflict escalates."
+            e "{i}I'm in. Let's do this.{/i}"
+            r "{i}Just what I wanted to hear.{/i}"
             hide raven_smirk with dissolve
             show elysia_umm at center with dissolve
             "If conflict goes too far, you might be blamed. In extreme chaos, you could face legal repercussions or violence from outraged coworkers."
-            $ rush_chance = renpy.random.randint(1, 3)
+            $ rush_chance = renpy.random.randint(1, 4)
             if rush_chance == 1:
                 jump gameover_arrest
             else:
                 hide elysia_umm
                 show elysia_huh at center
                 "You manage to escape the chaos, but your reputation suffers. You lose allies and face a backlash from the co-op."
-                "Your actions lead to distrust and isolation, but you avoid immediate danger."
-    
-    $ payment = renpy.random.randint(200, 500)
-    $ update_balance(payment)  # Update balance with payment
-    hide elysia_huh
-    hide elysia
-    show elysia_talk
-    "You earn $[payment] for your efforts."
+
+                $ payment = renpy.random.randint(300, 700)
+                $ update_balance(payment)  # Update balance with payment
+
+                "You earn $[payment] for your quick decision."
         
     jump new_opportunities
 
@@ -428,8 +474,9 @@ label missing_worker:
     play music "32_City_and_the_City.mp3"
     scene alley_dark with dissolve
     show elysia_huh at center with dissolve
+    "A co-op member named Ava mysteriously disappeared."
     show dk_angry at right with dissolve
-    "A co-op member named Ava mysteriously disappeared. Rumor says the Desert Kings kidnapped her for disobeying them."
+    "Rumor says the Desert Kings kidnapped her for disobeying them."
     menu:
         "Investigate or ignore?"
         "Investigate":
@@ -450,15 +497,17 @@ label missing_worker:
                 "Out of gratitude, Ava gives you $[payment]."
 
                 jump new_opportunities
+
         "Ignore":
-            "You focus on personal safety, but the co-op doubts your loyalty. You remain safe but skip heroics."
+            "You decide to stay out of it. You don't want to risk your safety."
             jump new_opportunities
 
 label new_opportunities:
     play music "431_Hotel_Noir.mp3"
     scene future_work with dissolve
     show elysia at right with dissolve
-    "With legalized sex work, authorities now focus on genuine trafficking. The Desert Kings lose their foothold on forced labor or intimidation. You feel a fresh breeze of safety."
+    "With legalized sex work, authorities now focus on genuine trafficking."
+    "The Desert Kings lose their foothold on forced labor or intimidation. You feel a fresh breeze of safety."
     "Yet you must decide your personal path:"
     menu:
         "Continue sex work or move on?"
@@ -512,7 +561,7 @@ label gameover_assault:
     show elysia_cry at left with dissolve
     show dk_angry at right with dissolve
 
-    "Violence strikes. The Desert Kings (or outraged associates) catch up with you. You can’t escape the assault."
+    "Violence strikes. The Desert Kings catch up with you. You can't escape the assault."
     "GAME OVER."
     jump end_screen
 

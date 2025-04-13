@@ -100,7 +100,7 @@ label casino_floor:
     $ buy_in = renpy.random.randint(100, 500)
     $ update_balance(-buy_in)  # Deduct buy-in from balance
     
-    "You place $[buy_in] on the table, and the dealer slides you a stack of chips."
+    "You buy in for $[buy_in], and the dealer slides you a stack of chips."
     "The next hand begins, and you peel back an ace of spades and an ace of clubs—pocket aces!"
     "Naturally, you play aggressively, raising the stakes."
     "The flop is a rainbow: 3 of hearts, 5 of diamonds, and 9 of clubs. Looks safe. You bet again."

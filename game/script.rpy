@@ -207,8 +207,7 @@ label act1:
 
 label act1_risky:
     "You stick to familiar areas, trying to maintain your income."
-    # $ arrest_chance = renpy.random.randint(1, 2)
-    $ arrest_chance = 1
+    $ arrest_chance = renpy.random.randint(1, 2)
     if arrest_chance == 1:
         jump gameover_arrest
     else:
@@ -261,8 +260,7 @@ label desert_refuse:
     hide dk_angrytalk
     show dk_angry at center
     "Unfortunately, the Desert Kings don’t like defiance. They might retaliate with violence."
-    # $ gang_attack = renpy.random.randint(1, 2)
-    $ gang_attack = 1
+    $ gang_attack = renpy.random.randint(1, 2)
     if gang_attack == 1:
         jump gameover_assault
     else:

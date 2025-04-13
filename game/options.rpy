@@ -49,7 +49,7 @@ Sound effects: {a=https://pixabay.com/}Pixabay{/a}
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "AdvocacyProject"
+define build.name = "ElysiasLife"
 
 
 ## Sounds and music ############################################################
@@ -155,7 +155,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "AdvocacyProject-1744463820"
+define config.save_directory = "ElysiasLife"
 
 
 ## Icon ########################################################################

@@ -32,6 +32,7 @@ image police_talk = "images/sprites/sm1_sensei_talk.png"
 image dk = "images/sprites/ssn_sports_normal.png"
 image dk_angry = "images/sprites/ssn_sports_angry.png"
 image dk_angrytalk = "images/sprites/ssn_sports_angrytalk.png"
+image dk_angrylaugh = "images/sprites/ssn_sports_angrylaugh.png"
 
 # councilwoman
 image sorren = "images/sprites/sf2g_sensei_normal.png"
@@ -559,7 +560,7 @@ label gameover_assault:
     $ balance = 0  # Reset balance to zero on game over
 
     show elysia_cry at left with dissolve
-    show dk_angry at right with dissolve
+    show dk_angrylaugh at right with dissolve
 
     "Violence strikes. The Desert Kings catch up with you. You can't escape the assault."
     "GAME OVER."

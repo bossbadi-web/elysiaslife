@@ -201,7 +201,7 @@ label casino_drink:
     e "{i}I'll take the house special.{/i}"
     bar "{i}Coming right up!{/i}"
 
-    $ drink_cost = renpy.random.randint(50, 200)
+    $ drink_cost = renpy.random.randint(5, 25)
     $ update_balance(-drink_cost)  # Cost of the drink
     "The drink costs you $[drink_cost]. You enjoy the ambiance, but the night is still young."
     jump act1

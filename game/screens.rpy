@@ -1613,5 +1613,7 @@ style slider_slider:
 
 
 screen stats_screen():
-    vbox:
-        text _("Balance: $[balance]")
+    frame:
+        background "gui/balance.png"
+        vbox:
+            text _("Balance: $[balance]")
